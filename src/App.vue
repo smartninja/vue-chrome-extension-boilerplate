@@ -1,26 +1,18 @@
 <template>
   <div class="app">
-    <h1 class="app__title">Google Extension</h1>
+    <h1>SmartNinja Chrome Extension</h1>
 
     <template v-if="domIsReady">
-      <SearchTerm class="app__search-term" :tabId="tabId"/>
-      <SetGoogleBackground :tabId="tabId"/>
+      <p>Hello Ninja! :)</p>
     </template>
-
-    <h2 v-else class="app__title"> Loading...</h2>
   </div>
 </template>
 
 <script>
-import { domIsReady, getTabId } from './utils/chrome'
-import SearchTerm from './components/SearchTerm.vue'
-import SetGoogleBackground from './components/SetGoogleBackground.vue'
+import { domIsReady } from './utils/chrome'
 
 export default {
-  components: {
-    SearchTerm,
-    SetGoogleBackground,
-  },
+  components: {},
   data() {
     return {
       domIsReady: false,
@@ -34,29 +26,11 @@ export default {
     async awaitReady() {
       await domIsReady()
       this.domIsReady = true
-      this.tabId = await getTabId()
     },
   },
 }
 </script>
 
-<style lang="scss">
-@import './scss/reset';
+<style>
 
-.app {
-  height: 100px;
-  width: 200px;
-  padding: 10px;
-
-  &__search-term {
-    margin-bottom: 10px;
-  }
-
-  &__title {
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-}
 </style>
